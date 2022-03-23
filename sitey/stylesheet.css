@@ -1,0 +1,227 @@
+    /* Site colours ---- MUST be a variable unless one-time use */
+
+     :root {
+        /* main palette */
+        --color1: #1B1C24; 
+            --color1b: #262833;
+            --color1c: #686E8D;
+        --color2: #DCDEE8; 
+        --color3: #BDB2FF; 
+            --color3b: #1800A3;
+        --color4: #3090CE;
+            --color4b: #5AA6D8; 
+
+        /* fonts */
+        --font1: Lato; /* actual main font */
+        --font2: candara; /* subtitle */
+        --font3: Muli; /* "mainfont" */
+        --font4: "Alatsi"; /* title */
+        --font5: arial; /* backup */
+        }
+
+    /* GENERAL THINGS */
+
+        body {
+        overflow-x: hidden;
+        background-color: var(--color1); 
+
+        /*background-color: #e4e3db;
+        filter: invert(1) hue-rotate(180deg);  FOR LIGHT MODE */
+
+        }
+
+        html{
+        scroll-behavior:smooth;
+        }
+
+        ::-webkit-scrollbar {  /* making cool scroll bar */
+        width:12px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+        background:linear-gradient(transparent, var(--color4));
+        border-radius:6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+        background:linear-gradient(transparent, var(--color3));
+        } 
+
+        .mainfont, .mainfont a {
+        font-family: var(--font3), var(--font5); 
+        font-size: 16px;
+        color: var(--color4);
+        }
+
+    /* HEADER */    
+
+        .header {
+        margin: auto;
+        margin-top: 50px;
+        width: 75%;
+        padding: 50px;
+        background: var(--color1b);
+        text-align: center;
+        border-radius: 15px 50px;
+        }
+
+        #sub {
+        color: var(--color3);
+        font-size: 42px;
+        font-family: var(--font2), var(--font5);
+        }
+
+        #title {
+        color: var(--color2);
+        font-size: 80px;
+        font-family: var(--font4), var(--font5);
+        }
+
+    /* ABOVE TABLE */
+
+        #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        right: 200px;
+        top: 30px;
+        }
+
+        #shell {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        left: 250px;
+        bottom: 30px;
+        z-index: 50;
+        }
+
+        #jump {
+        position: relative;
+        color: var(--color2);
+        font-family: var(--font1), var(--font5);
+        z-index: 51;
+        }
+
+        #ins, label {
+        font-weight: bold;
+        }
+
+        select {
+        font-family: var(--font3), var(--font5);
+        }
+
+        option, select {
+        background-color: var(--color1b); 
+        border: 0.5px solid var(--color2); 
+        color: var(--color2);
+        border-radius: 3px;
+        }
+
+        #button {
+        background-color: var(--color1b);
+        padding: 5px;
+        border: 0.5px solid var(--color2);
+        border-radius: 3px
+        font-size: 16px;
+        font-family: var(--font1), var(--font5);
+        color: var(--color2);
+        }
+
+        button {
+        border-radius: 4px;
+        margin-top: 15px;
+        }
+
+    /* ACTUAL TABLE */
+
+        th {
+        color: var(--color1);
+        background-color: var(--color4b);
+        font-family: var(--font1), var(--font5);
+        padding: 20px;
+        font-size: 20px;
+        border: 1px solid var(--color4);
+        }
+
+        td {
+        padding: 20px;
+        font-family: var(--font1), var(--font5);
+        border: 1px solid var(--color4);
+        background-color: var(--color1b);
+        }
+
+        table {
+        width: 80%;
+        font-family: var(--font1), var(--font5);
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        }
+
+        #Table {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--color2);
+        }
+
+        .hide-row {
+        display: none;
+        }
+
+        #Table a {
+        text-decoration: none;
+        font-family: var(--font1), var(--font5);
+        font-weight: bold;
+        }
+
+        #Table a:hover {
+        background-color: var(--color3b);
+        }
+        #Table a:link {
+        color: var(--color3);
+        }
+        #Table a:visited {
+        color: var(--color3);
+        }
+
+    /* THE BOTTOM */
+
+        #join {
+        font-size:25px;
+        }
+
+        #discordIcon {
+    	height:80px;
+        }
+
+        #footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        right: 200px;
+        }
+
+        #forms a {
+    	font-size:30px;
+    	position:relative;
+    	left:750px;
+    	bottom:100px; 
+        }
+
+    	#theBottom {
+    	display:table;
+    	margin:0 auto;
+        color: var(--color2);
+        font-family: var(--font1), var(--font5);
+    	}
+
+        #theBottom a {
+        color: var(--color2);
+        }

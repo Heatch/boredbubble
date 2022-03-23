@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Bored Base</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css2?family=Alatsi&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<script src="./tabledata.js"></script>
+<script src="./mainjs.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<meta charset="UTF-8">
+
+</head>
+<body>
+
+    <div class="header">
+
+    <h1  id="title">Bored Base</h1> 
+    <p id="sub">Hundreds of Websites to Cure Your Boredom</p>
+
+    </div>
+
+    <div id = "bHeader">
+    <div id="container">
+
+    <p class = 'mainfont' id="ins">Click the site you'd like to go to and be taken there instantly!</p>
+    <a href="#theBottom" id='jump'>Jump to the bottom</a>
+
+    </div>
+
+    <div id="shell">
+
+    <span id="dropdown">
+    <label for="filter" class = "mainfont">Filter:</label>
+    <select id="filter" class="menu"></select>
+    </span>
+
+    <button onclick="location.reload()" id = 'button'>Randomize List Order</button>
+
+    </div>
+    </div>
+
+    <div id="Table">
+
+        <table class="tbl-site">
+            <tr>
+                <th>Site</th>
+                <th>Description</th>
+                <th>Tags</th>
+            </tr>
+            <tbody id="tableData"></tbody>
+        </table>
+
+    </div>
+
+    <div id='footer'>
+        <p id='join' class="mainfont">Join Our Discord Server:</p>
+        <a href=""><img src="discord.png" id="discordIcon"></a>
+    </div>
+
+    <div id='forms'class="mainfont">
+        <a href="https://forms.gle/EKK3PpUWAsTto1D97" target="_blank">Suggest a site</a> <br>
+        <a href="https://forms.gle/6raQVCjWKu3YwfSR6" target="_blank">Report a site</a>
+    </div>
+
+    <span id="theBottom"><a href="">About</a>  |  <a href="">Terms</a>  |  <a href="">Privacy</a></span>
+
+</body>
+</html>

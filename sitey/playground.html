@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bored Base</title>
+<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,200&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<script src="./tabledata.js"></script>
+<script src="./mainjs.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<div id="progressbar"></div>
+<div id="scrollPath"></div>
+<div class="header">
+    <h1  id="title">Bored Base</h1> 
+    <p id="sub">Hundreds of Websites to Cure Your Boredom</p>
+</div>
+            <button onclick="location.reload()" id = 'button'>Randomize List Order</button>
+        <h3 class = 'mainfont'>Click the site you'd like to go to and be taken there instantly!</h3>
+
+        <div id="Drop">
+            <label for="filter" class="mainfont">Filter This Page:</label>
+            <select id="filter" class="menu">
+            </select>
+        </div>
+
+        <div id="Table">
+            <table class="tbl-site">
+                <tr class="mainfont">
+                    <th>Site</th>
+                    <th>Description</th>
+                    <th>Tags</th>
+                </tr>
+                <tbody id="tableData"></tbody>
+            </table>
+        </div>
+    <div id='footer'>
+        <p id='join' class="mainfont">Join our Discord Server:</p>
+        <a href=""><img src="discord.png" id="discordIcon"></a>
+    </div>
+    <div id='forms'class="mainfont">
+        <a href="">Suggest a site</a> <br>
+        <a href="">Report a site</a>
+    </div>
+    <span id="theBottom"><a href="">Terms & Conditions</a>  |  <a href="">Privacy</a></span>
+<body>
+
+</body>
+
+</html>

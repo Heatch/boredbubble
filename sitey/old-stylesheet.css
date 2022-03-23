@@ -1,0 +1,207 @@
+    /* Site colours ---- MUST be a variable unless one-time use */
+
+     :root {
+        --color1: #CE7B91; /* nice pink */
+        --color2: #CEEAF7; /* lightest blue */
+        --color3: #1A1C21; /* main colour - the black */
+        --color4: #4281A4; /* sea blue */
+        --color5: #4F86C6; /* sky blue */
+        --font1: Lato; /* actual main font */
+        --font2: arial; /* backup */
+        --font3: Muli; /* "mainfont" */
+        --font4: candara; /* titles */
+        --font5: sans-serif; /* other */
+        }
+
+    /* GENERAL THINGS */
+
+        body {
+        overflow-x: hidden;
+        background-color: var(--color3);
+        }
+
+        html{scroll-behavior:smooth;
+        }
+
+        ::-webkit-scrollbar {  /* making cool scroll bar */
+        width:12px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+        background:linear-gradient(transparent, var(--color4));
+        border-radius:6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+        background:linear-gradient(transparent, var(--color1));
+        } 
+
+        .mainfont, .mainfont a {
+        font-family: var(--font3); 
+        font-size: 16px;
+        color: var(--color4);
+        }
+
+    /* HEADER */    
+
+        .header {
+        margin: auto;
+        margin-top: 50px;
+        width: 75%;
+        padding: 50px;
+        background: var(--color2);
+        text-align: center;
+        border-radius: 15px 50px;
+        }
+
+        #sub {
+        color: var(--color3);
+        font-size: 42px;
+        }
+
+        #title {
+        color: var(--color1);
+        font-size: 80px;
+        }
+
+        #title, #sub {
+        font-family: var(--font4), var(--font2)
+        }
+
+    /* ABOVE TABLE */
+
+        #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        right: 200px;
+        top: 30px;
+        z-index: 50;
+        }
+
+        #shell {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        left: 250px;
+        bottom: 30px;
+        }
+
+        #jump {
+        position: relative;
+        color: var(--color2);
+        font-family: var(--font1), var(--font2);
+        }
+
+        select, label {
+        font-family: var(--font5), var(--font2);
+        }
+
+        #dropdown {
+        }
+
+        option, select {
+        background-color: var(--color5); 
+        border: 0.5px solid var(--color2); 
+        color: var(--color2);
+        border-radius: 3px;
+        }
+
+        #button {
+        background-color: var(--color5);
+        padding: 5px;
+        border-width: 2px;
+        font-size: 16px;
+        font-family: var(--font1), var(--font2);
+        color: var(--color2);
+        border-color: var(--color2);
+        }
+
+        button {
+        border-radius: 4px;
+        margin-top: 15px;
+        }
+
+    /* ACTUAL TABLE */
+
+        td, th {
+        padding: 20px;
+        font-family: var(--font1), var(--font2);
+        border: 1px solid var(--color3);
+        background-color: var(--color2);
+        }
+
+        table {
+        width: 80%;
+        font-family: var(--font5), var(--font2);
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        }
+
+        #Table {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--color1);
+        }
+
+        .hide-row {
+        display: none;
+        }
+
+        #Table a {
+        text-decoration: none;
+        font-family: var(--font4), var(--font2);
+        font-weight: bold;
+        }
+
+        #Table a:hover {
+        background-color: var(--color1);
+        }
+        #Table a:link {
+        color: var(--color5);
+        }
+        #Table a:visited {
+        color: var(--color5);
+        }
+
+    /* THE BOTTOM */
+
+        #join {
+        font-size:25px;
+        }
+
+        #discordIcon {
+    	height:80px;
+        }
+
+        #footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        right: 200px;
+        }
+
+        #forms a {
+    	font-size:30px;
+    	position:relative;
+    	left:750px;
+    	bottom:100px; 
+        }
+
+    	#theBottom {
+    	display:table;
+    	margin:0 auto;
+        color: var(--color2);
+        font-family: var(--font1), var(--font2);
+    	}
+
+        #theBottom a {
+        color: var(--color2);
+        }
