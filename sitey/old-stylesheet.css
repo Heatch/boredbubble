@@ -101,9 +101,6 @@
         font-family: var(--font5), var(--font2);
         }
 
-        #dropdown {
-        }
-
         option, select {
         background-color: var(--color5); 
         border: 0.5px solid var(--color2); 
