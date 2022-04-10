@@ -23,7 +23,7 @@
 
         body {
         overflow-x: hidden;
-        background-color: var(--color1); 
+        background-color: var(--color1);
 
         /*background-color: #e4e3db;
         filter: invert(1) hue-rotate(180deg);  FOR LIGHT MODE */

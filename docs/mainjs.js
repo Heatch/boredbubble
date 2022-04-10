@@ -1,4 +1,5 @@
-        function buildTable(data) {
+
+function buildTable(data) {
             var table = document.getElementById('tableData')
 
             for (var i = 0; i < data.length; i++) {
@@ -16,7 +17,7 @@
         }
 
         // clear the previous console entries each time we open this page.
-        console.clear();
+        //console.clear();
 
         window.onload = function () {
             // DOM elements are ready ...
@@ -65,8 +66,8 @@
                         }
                     }
                 }
-            };
-        };
+            }
+        }
 
        function RandomButton(arr) {
         let newPos,
@@ -129,3 +130,13 @@
                     el.value = val;
                     select.appendChild(el);
                 }
+
+            //excluding circle generation from the top of the table
+
+                elementDef = document.getElementById('bHeader');
+                var topExc = elementDef.getBoundingClientRect();
+
+                possibleHeights = [];
+                topEdge = topExc.top;
+                bottomEdge = topExc.top + topExc.height;
+ 
