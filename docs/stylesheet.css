@@ -24,6 +24,7 @@
         body {
         overflow-x: hidden;
         background-color: var(--color1);
+        height: 500px;
 
         /*background-color: #e4e3db;
         filter: invert(1) hue-rotate(180deg);  FOR LIGHT MODE */
@@ -32,6 +33,7 @@
 
         html{
         scroll-behavior:smooth;
+        min-height: 100%;
         }
 
         ::-webkit-scrollbar {  /* making cool scroll bar */
@@ -198,7 +200,7 @@
         font-size:25px;
         }
 
-        #discordIcon {
+        /* #discordIcon {
     	height:80px;
         }
 
@@ -209,13 +211,23 @@
         align-items: center;
         position: relative;
         width: 70%;
+        } */
+
+        #logo {
+        height: 169px;
+        display: flex;
+        position: relative;
+        right: -35%;
+        margin: 50px;
+        -webkit-filter: drop-shadow(5px 5px 5px var(--color4b));
+        filter: drop-shadow(5px 5px 5px var(--color4b));
         }
 
         #forms a {
     	font-size: 30px;
     	position: relative;
     	right: -55%;
-    	bottom: 100px; 
+    	bottom: 175px; 
         }
 
     	#theBottom {
