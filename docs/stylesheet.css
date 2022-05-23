@@ -24,7 +24,6 @@
         body {
         overflow-x: hidden;
         background-color: var(--color1);
-        height: 500px;
 
         /*background-color: #e4e3db;
         filter: invert(1) hue-rotate(180deg);  FOR LIGHT MODE */
@@ -33,7 +32,6 @@
 
         html{
         scroll-behavior:smooth;
-        min-height: 100%;
         }
 
         ::-webkit-scrollbar {  /* making cool scroll bar */

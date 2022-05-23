@@ -151,7 +151,7 @@ function buildTable(data) {
             //creating circles in the background 
 
             function getCircles() {
-
+            
                 number = 0;
                 hiddenRows = document.getElementsByClassName("hide-row");
                 number = myArray.length - hiddenRows.length;
@@ -159,10 +159,9 @@ function buildTable(data) {
 
             }
 
-            function circleGen(num) {
-
-            console.log("hi");
             circles = [];
+
+            function circleGen(num) {
 
             for (i = 0; i < (num * 2); i++) {
                 
@@ -215,3 +214,13 @@ function buildTable(data) {
                circleGen(getCircles());
 
            }); 
+
+        $('select').on('change', function() {
+
+            for (i = 0; i < circles.length; i++) {
+                circles[i].remove();
+                }
+
+            circleGen(getCircles());
+
+        });
