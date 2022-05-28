@@ -212,13 +212,13 @@
         } */
 
         #logo {
-        height: 169px;
+        height: 220px;
         display: flex;
         position: relative;
-        right: -35%;
+        right: -30%;
         margin: 50px;
-        -webkit-filter: drop-shadow(5px 5px 5px var(--color4b));
-        filter: drop-shadow(5px 5px 5px var(--color4b));
+        -webkit-filter: drop-shadow(1px 1px 1px var(--color4b));
+        filter: drop-shadow(1px 1px 1px var(--color4b));
         }
 
         #forms a {
