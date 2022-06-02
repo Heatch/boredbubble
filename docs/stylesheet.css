@@ -116,6 +116,11 @@
         font-family: var(--font3), var(--font5);
         }
 
+        option {
+        position: absolute;
+        top:100%;
+        }
+
         option, select {
         background-color: var(--color1b); 
         border: 0.5px solid var(--color2); 

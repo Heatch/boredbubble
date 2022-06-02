@@ -70,24 +70,6 @@ function buildTable(data) {
             }
         }
 
-       function RandomButton(arr) {
-        let newPos,
-        temp;
-
-        for(let i = arr.length - 1; i > 0; i--) {
-
-            newPos = Math.floor(Math.random() * (i + 1));
-            temp = arr[i];
-            arr[i] = arr[newPos];
-            arr[newPos] = temp;
-        }
-        return arr
-       };
-
-
-      var myArray = RandomButton(myArray);
-
-
             //array that stores all unique data tags
 
             var uniqueDataTags = [];
@@ -143,6 +125,8 @@ function buildTable(data) {
                 bottomEdge = topExc.top + topExc.height;
                 zebottom = botExc.top;
 
+                //this code \/ \/ \/ very important and I fail to understand why 
+
                 var selectMenu = document.querySelector(".menu");
                 selectMenu.onchange = function () {
                     console.log("changed"); }
@@ -152,9 +136,8 @@ function buildTable(data) {
 
             function getCircles() {
             
-                number = 0;
-                hiddenRows = document.getElementsByClassName("hide-row");
-                number = myArray.length - hiddenRows.length;
+                docHeight = $(document).height()
+                number = Math.round(docHeight/69);
                 return number;
 
             }
@@ -224,3 +207,44 @@ function buildTable(data) {
             circleGen(getCircles());
 
         });
+
+            // random on reload + random button
+
+        function shuffle(array) {
+            return array.sort(() => Math.random() - 0.5);
+            }
+
+        var myArray = shuffle(myArray); 
+
+          $(document).ready(function() {
+            $("#button").click(function(){
+    
+                var select = document.getElementById('filter');
+                var selection = select.options[select.selectedIndex].value;
+
+                function reFresh() {
+                    shuffle(myArray);
+                        
+                    Array.prototype.slice.call(document.getElementsByTagName('td')).forEach(
+                        function(item) {
+                        item.remove();
+                    });
+                    buildTable(myArray); 
+                }
+
+                shownRows = [];
+
+                    if (selection == "-") { 
+
+                        reFresh();
+
+                    }
+                        
+                    else { 
+
+                        
+
+                    }
+
+            }); 
+        }); 
