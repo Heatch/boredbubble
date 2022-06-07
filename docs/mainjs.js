@@ -208,41 +208,66 @@ function buildTable(data) {
 
         });
 
-            // random on reload + random button
+            // function for shuffling the array that builds table
 
         function shuffle(array) {
             return array.sort(() => Math.random() - 0.5);
             }
 
+        
         var myArray = shuffle(myArray); 
+
+            //making randomize button work
 
           $(document).ready(function() {
             $("#button").click(function(){
-    
+
                 var select = document.getElementById('filter');
                 var selection = select.options[select.selectedIndex].value;
+                var table = document.getElementById('tableData');
+                var tableRows = table.getElementsByTagName("tr");
+
+                //function to delete old table and build new one with shuffling rows
 
                 function reFresh() {
                     shuffle(myArray);
                         
-                    Array.prototype.slice.call(document.getElementsByTagName('td')).forEach(
-                        function(item) {
-                        item.remove();
-                    });
+                    var tableHeaderRowCount = 0;
+                    var rowCount = myArray.length;
+                    for (var i = tableHeaderRowCount; i < rowCount; i++) {
+                        table.deleteRow(tableHeaderRowCount);
+                    }
+
                     buildTable(myArray); 
+
                 }
-
-                shownRows = [];
-
+                    //simply shuffles upon on filter
                     if (selection == "-") { 
 
                         reFresh();
 
                     }
-                        
+                    //upon detecting filter first shuffles then filters again with old code
                     else { 
 
-                        
+                        reFresh();
+
+                        for (let i = 0; i < tableRows.length; i++) {
+                            let rowTR = tableRows[i];
+                            // get the row's dataTags and split them into an array
+                            let rowTags = rowTR.getAttribute("data-tags").split(" ");
+                            // then check if any of the tags match the selected one ..
+                            if (rowTags.indexOf(selection) >= 0) {
+                                // have a matching data-tag
+                                if (rowTR.classList.contains("hide-row")) {
+                                    rowTR.classList.remove("hide-row");
+                                }
+                            }
+                            else {
+                                // doesn't have the matching data-tag
+                                rowTR.classList.add("hide-row");
+                            }
+                        }
 
                     }
 

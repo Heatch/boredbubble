@@ -139,6 +139,11 @@
         color: var(--color2);
         }
 
+        #button:active {
+        box-shadow: -6px 6px 5px -2px var(--color3);
+        border: 0.5px solid var(--color3);
+        }
+
         button {
         border-radius: 4px;
         margin-top: 15px;
