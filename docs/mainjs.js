@@ -214,7 +214,6 @@ function buildTable(data) {
             return array.sort(() => Math.random() - 0.5);
             }
 
-        
         var myArray = shuffle(myArray); 
 
             //making randomize button work
@@ -273,3 +272,14 @@ function buildTable(data) {
 
             }); 
         }); 
+
+        jQuery(document).ready(function($) {
+
+            $("#jump").click(function(event){
+                console.log("test");
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top}, 1200);
+            });
+        });
+
+

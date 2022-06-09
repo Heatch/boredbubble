@@ -21,7 +21,7 @@
 
     <div class="header">
 
-    <h1  id="title">Bored Bubble</h1> 
+    <h1  class="title">Bored Bubble</h1> 
     <p id="sub">Hundreds of Websites to Cure Your Boredom</p>
 
     </div>
@@ -41,7 +41,7 @@
     <select id="filter" class="menu"></select>
     </span>
 
-    <button id = 'button'>Click to Randomize Order</button>
+    <button id = 'button' onclick="buttonAct()">Click to Randomize Order</button>
 
     </div>
     </div>
@@ -50,9 +50,9 @@
 
         <table class="tbl-site">
             <tr>
-                <th>Site</th>
-                <th>Description</th>
-                <th>Tags</th>
+                <th id="site">Site</th>
+                <th id="desc">Description</th>
+                <th id="tags">Tags</th>
             </tr>
             <tbody id="tableData"></tbody>
         </table>
@@ -64,14 +64,14 @@
         <a href=""><img src="discord.png" id="discordIcon"></a>
     </div>  PUT DISCORD IF SITE ACTIVE -->
 
-    <img src="logo.png" id="logo">
+    <img src="logo.png" class="logo" id="mainLogo">
 
     <div id='forms'class="mainfont">
         <a href="https://forms.gle/EKK3PpUWAsTto1D97" target="_blank">Suggest a site</a> <br>
         <a href="https://forms.gle/6raQVCjWKu3YwfSR6" target="_blank">Report a site</a>
     </div>
 
-<span id="theBottom"><a href="">About</a>  |  <a href="">Terms</a>  |  <a href="">Privacy</a></span> 
+<span id="theBottom"><a href="about.html">About</a>  |  <a href="terms.html">Terms</a>  |  <a href="privacy.html">Privacy</a></span> 
  
 </body>
 <script src="./mainjs.js" defer></script>
