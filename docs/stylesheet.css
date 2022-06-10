@@ -131,7 +131,7 @@
         z-index: 50;
         }
 
-        #jump {
+        .jump {
         position: relative;
         color: var(--color2);
         font-family: var(--font1), var(--font5);
@@ -242,6 +242,13 @@
         }
 
     /* THE BOTTOM */
+
+        #jumpCenter {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        }
 
         #join {
         font-size:25px;

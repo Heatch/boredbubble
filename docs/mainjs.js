@@ -273,10 +273,11 @@ function buildTable(data) {
             }); 
         }); 
 
+        //makes it so "jump to bottom" works without #bottom
+
         jQuery(document).ready(function($) {
 
-            $("#jump").click(function(event){
-                console.log("test");
+            $(".jump").click(function(event){
                 event.preventDefault();
                 $('html,body').animate({scrollTop:$(this.hash).offset().top}, 1200);
             });
