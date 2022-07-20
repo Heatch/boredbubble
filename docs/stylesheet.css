@@ -110,14 +110,19 @@
 
     /* ABOVE TABLE */
 
+        #bHeader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 3vh;
+        }
+
         #container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: relative;
-        width: 70%;
-        top: 4vh;
+        margin-right: 5vh;
         }
 
         #shell {
@@ -125,10 +130,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: relative;
-        width: 130%;
-        bottom: 4vh;
         z-index: 50;
+        margin-left: 5vh;
+        width: 30%;
         }
 
         .jump {
@@ -267,11 +271,16 @@
         width: 70%;
         } */
 
+        #bottomThings {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
         #mainLogo {
         height: 28vh;
         display: flex;
         position: relative;
-        right: -30%;
         margin: 5vh;
         -webkit-filter: drop-shadow(1px 1px 1px var(--color4b));
         filter: drop-shadow(1px 1px 1px var(--color4b));
@@ -286,8 +295,6 @@
         #forms a {
     	font-size: 4vh;
     	position: relative;
-    	right: -55%;
-    	bottom: 22vh; 
         }
 
     	#theBottom {
