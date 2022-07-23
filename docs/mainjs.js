@@ -273,7 +273,7 @@ function buildTable(data) {
             }); 
         }); 
 
-        //makes it so "jump to bottom" works without #bottom
+        //makes it so "jump to bottom and top" work without changing link
 
         jQuery(document).ready(function($) {
 

@@ -22,7 +22,7 @@
     /* GENERAL THINGS */
 
         body {
-        overflow-x: hidden;
+
         background-color: var(--color1);
 
         /*background-color: #e4e3db;
@@ -35,7 +35,7 @@
         }
 
         ::-webkit-scrollbar {  /* making cool scroll bar */
-        width:2vh;
+        width:1.5vh;
         }
 
         ::-webkit-scrollbar-thumb {
@@ -53,13 +53,48 @@
         color: var(--color3);
         }
 
-    /* SUBPAGES */
+        @media screen and (max-width: 500px) {
 
-        #return {
-        height: 20vh;
+            table td, table th {
+            font-size: 3vw;
+            padding: 1vh;
+            }
+            .mainfont, .mainfont a {
+            font-size: 3vw;
+            }
+            .jump {
+            font-size: 2.5vw;
+            }
+            select {
+            width: 10vw;
+            height: 5vw;
+            }
+            #button {
+            font-size: 3vw;
+            }
+
+          } 
+
+        #LePage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         }
 
-        #return:hover {
+    /* SUBPAGES */
+
+        .return {
+        height: 20vh;
+        z-index: 1;
+        position: relative;
+        }
+
+        .returnCont {
+        z-index: 1;
+        }
+
+        .return:hover {
         filter: drop-shadow(5px 5px 5px var(--color2));
         }
 
@@ -72,6 +107,7 @@
         margin: auto;
         position: relative;
         top: -20vh;
+        z-index: 0;
         }
 
         #about {
@@ -86,7 +122,6 @@
     /* HEADER */    
 
         .header {
-        margin: auto;
         margin-top: 5vh;
         width: 75%;
         padding: 10vh;
@@ -97,15 +132,15 @@
 
         #sub {
         color: var(--color2);
-        font-size: 5vh;
+        font-size: 3vw;
         font-family: var(--font2), var(--font5);
         }
 
-        .title {
+        #title {
         color: var(--color4b);
-        font-size: 13vh;
+        font-size: 6.9vw;
         font-family: var(--font4), var(--font5);
-        letter-spacing: 6.9px;
+        letter-spacing: 0.69vw;
         }
 
     /* ABOVE TABLE */
@@ -132,7 +167,6 @@
         align-items: center;
         z-index: 50;
         margin-left: 5vh;
-        width: 30%;
         }
 
         .jump {
@@ -148,11 +182,6 @@
 
         select {
         font-family: var(--font3), var(--font5);
-        }
-
-        option {
-        position: absolute;
-        top:100%;
         }
 
         option, select {
@@ -176,7 +205,7 @@
         padding: 1vh;
         border: 0.5px solid var(--color2);
         border-radius: 3px;
-        font-size: 2.1vh;
+        font-size: 2vh;
         font-family: var(--font1), var(--font5);
         color: var(--color2);
         }
@@ -212,10 +241,10 @@
         }
 
         table {
-        width: 80%;
         font-family: var(--font1), var(--font5);
         margin-bottom: 2vh;
         border-collapse: collapse;
+        max-width: 80vw;
         }
 
         #Table {
@@ -278,7 +307,7 @@
         }
 
         #mainLogo {
-        height: 28vh;
+        height: 28vw;
         display: flex;
         position: relative;
         margin: 5vh;
