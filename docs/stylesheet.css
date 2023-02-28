@@ -55,10 +55,6 @@
 
         @media screen and (max-width: 500px) {
 
-            table td, table th {
-            font-size: 3vw;
-            padding: 1vh;
-            }
             .mainfont, .mainfont a {
             font-size: 3vw;
             }
@@ -210,68 +206,83 @@
         color: var(--color2);
         }
 
-    /* ACTUAL TABLE */
+    /* THE "TABLE" */
 
-        th {
-        color: var(--color1);
-        background-color: var(--color4b);
-        font-family: var(--font1), var(--font5);
-        padding: 3vh;
-        font-size: 3vh;
-        /*border: 1px solid var(--color4); */
-        -webkit-box-shadow: inset 0px -1px 0px 1px var(--color4);
-        box-shadow: inset 0px -1px 0px 1px var(--color4);
-        }
-
-        #site {
-        border-radius: 40px 0px 0px 0px;
-        }
-
-        #tags {
-            border-radius: 0px 40px 0px 0px;
-        }
-
-        td {
+        #grid {
+        display: grid;
+        grid-template-columns: repeat(1);
+        margin: 2vh;
+      }
+      
+        .row {
+        display: flex;
+        flex-direction: row;
+      }
+      
+        .cell {
         padding: 3vh;
         font-family: var(--font1), var(--font5);
-        /*border: 1px solid var(--color4); */
         -webkit-box-shadow: inset 0px -1px 0px 1px var(--color4);
         box-shadow: inset 0px -1px 0px 1px var(--color4);
         background-color: var(--color1b);
-        }
-
-        table {
-        font-family: var(--font1), var(--font5);
-        margin-bottom: 2vh;
-        border-collapse: collapse;
-        max-width: 80vw;
-        }
-
-        #Table {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         color: var(--color2);
-        }
+        align-items: center;
+        display: flex;
+      }
 
-        .hide-row {
-        display: none;
-        }
-
-        #Table a {
+        .cell a {
         text-decoration: none;
         font-family: var(--font1), var(--font5);
         font-weight: bold;
         }
 
-        #Table a:hover {
+        .cell a:hover {
         background-color: var(--color3b);
         }
-        #Table a:link {
+        .cell a:link {
         color: var(--color3);
         }
-        #Table a:visited {
+        .cell a:visited {
         color: var(--color3);
+        }
+
+            
+      .Hcell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        font-family: var(--font1), var(--font5);
+        font-weight: bold;
+        padding: 3vh;
+        font-size: 3vh;
+        -webkit-box-shadow: inset 0px -1px 0px 1px var(--color4);
+        box-shadow: inset 0px -1px 0px 1px var(--color4);
+        background-color: var(--color4b);
+      }
+
+      #cool1 {
+        border-radius: 40px 0px 0px 0px;
+      }
+
+      #cool2 {
+        border-radius: 0px 40px 0px 0px;
+      }
+
+      .s {
+        width: 15vw;
+      }
+
+      .d {
+        width: 40vw;
+      }
+
+      .t {
+        width: 14vw;
+      }
+
+      .hide-row {
+        display: none;
         }
 
     /* THE BOTTOM */

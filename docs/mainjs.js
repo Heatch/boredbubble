@@ -1,21 +1,19 @@
-
 function buildTable(data) {
-            var table = document.getElementById('tableData')
+    var table = document.getElementById('grid')
 
-            for (var i = 0; i < data.length; i++) {
-                // combine the two dataTags items into one .. then add to the row ...
-                let dataTags = (data[i].dataTag1 + " " + data[i].dataTag2).trim();
-                // create the row & cells tag
-                var row = `<tr data-tags='${(dataTags)}'>
-           <td><a href="${data[i].link}" target="_blank">${data[i].site}</a></td>
-           <td>${data[i].description}</td>
-           <td>${data[i].tags}</td>
-           </tr>`
+    for (var i = 0; i < data.length; i++) { 
+        // combine the two dataTags items into one .. then add to the row ...
+        let dataTags = (data[i].dataTag1 + " " + data[i].dataTag2).trim();
+        let rowNumber = i.toString();
+        var row = `<div id = "row-${rowNumber}" class="row" data-tags='${(dataTags)}'>
+        <div class="cell s"><a href="${data[i].link}" target="_blank">${data[i].site}</a></div>
+        <div class="cell d">${data[i].description}</div>
+        <div class="cell t">${data[i].tags}</div>
+        </div>`
                 // add the row & cells code ...
                 table.innerHTML += row
-            }
-        }
-
+    }
+}
         // clear the previous console entries each time we open this page.
         //console.clear();
 
@@ -23,12 +21,13 @@ function buildTable(data) {
             // DOM elements are ready ...
 
             // populate the table, using the data from an array.
-            buildTable(myArray);
+            buildTable(myArray); 
+            randomize();
 
-            // which table tbody has the rows to filter?
-            let tableData = document.getElementById("tableData");
+            // which table tbody has the rows to filter? 
+            let tableData = document.getElementById("grid");
             // grab the collection of TRs ...
-            let tableRows = tableData.getElementsByTagName("tr");
+            let tableRows = tableData.querySelectorAll("[id*='row']");
 
             // selection box changes ..
             var selectMenu = document.querySelector(".menu");
@@ -124,7 +123,7 @@ function buildTable(data) {
                 topEdge = topExc.top;
                 bottomEdge = topExc.top + topExc.height;
                 zebottom = botExc.top;
-
+                
                 //this code \/ \/ \/ very important and I fail to understand why 
 
                 var selectMenu = document.querySelector(".menu");
@@ -200,13 +199,13 @@ function buildTable(data) {
 
         $('select').on('change', function() {
 
-            for (i = 0; i < circles.length; i++) {
-                circles[i].remove();
-                }
+        for (i = 0; i < circles.length; i++) {
+            circles[i].remove();
+            }
 
-            circleGen(getCircles());
+        circleGen(getCircles());
 
-        });
+         });
 
             // function for shuffling the array that builds table
 
@@ -214,64 +213,31 @@ function buildTable(data) {
             return array.sort(() => Math.random() - 0.5);
             }
 
-        var myArray = shuffle(myArray); 
-
             //making randomize button work
+
+            function randomize() {
+                var table = document.getElementById('grid');
+                var rows = Array.from(table.querySelectorAll('.row'));
+                var header = rows.shift(); // remove the first row (header) and store it in a variable
+            
+                for (var i = rows.length - 1; i > 0; i--) {
+                  var j = Math.floor(Math.random() * (i + 1));
+                  var temp = rows[i];
+                  rows[i] = rows[j];
+                  rows[j] = temp;
+                }
+            
+                // Re-add the shuffled rows to the table
+                table.innerHTML = ''; // clear the table
+                table.appendChild(header); // re-add the header
+                rows.forEach(row => table.appendChild(row)); // re-add the shuffled rows
+            }
 
           $(document).ready(function() {
             $("#button").click(function(){
-
-                var select = document.getElementById('filter');
-                var selection = select.options[select.selectedIndex].value;
-                var table = document.getElementById('tableData');
-                var tableRows = table.getElementsByTagName("tr");
-
-                //function to delete old table and build new one with shuffling rows
-
-                function reFresh() {
-                    shuffle(myArray);
-                        
-                    var tableHeaderRowCount = 0;
-                    var rowCount = myArray.length;
-                    for (var i = tableHeaderRowCount; i < rowCount; i++) {
-                        table.deleteRow(tableHeaderRowCount);
-                    }
-
-                    buildTable(myArray); 
-
-                }
-                    //simply shuffles upon on filter
-                    if (selection == "-") { 
-
-                        reFresh();
-
-                    }
-                    //upon detecting filter first shuffles then filters again with old code
-                    else { 
-
-                        reFresh();
-
-                        for (let i = 0; i < tableRows.length; i++) {
-                            let rowTR = tableRows[i];
-                            // get the row's dataTags and split them into an array
-                            let rowTags = rowTR.getAttribute("data-tags").split(" ");
-                            // then check if any of the tags match the selected one ..
-                            if (rowTags.indexOf(selection) >= 0) {
-                                // have a matching data-tag
-                                if (rowTR.classList.contains("hide-row")) {
-                                    rowTR.classList.remove("hide-row");
-                                }
-                            }
-                            else {
-                                // doesn't have the matching data-tag
-                                rowTR.classList.add("hide-row");
-                            }
-                        }
-
-                    }
-
-            }); 
-        }); 
+                randomize();
+            });
+            });
 
         //makes it so "jump to bottom and top" work without changing link
 
@@ -282,5 +248,3 @@ function buildTable(data) {
                 $('html,body').animate({scrollTop:$(this.hash).offset().top}, 1200);
             });
         });
-
-
