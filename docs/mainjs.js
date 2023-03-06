@@ -23,6 +23,7 @@ function buildTable(data) {
             // populate the table, using the data from an array.
             buildTable(myArray); 
             randomize();
+            limitRows();
 
             // which table tbody has the rows to filter? 
             let tableData = document.getElementById("grid");
@@ -32,10 +33,11 @@ function buildTable(data) {
             // selection box changes ..
             var selectMenu = document.querySelector(".menu");
             selectMenu.onchange = function () {
-
+                
                 let selection = this.value;
 
                 if (selection !== "-") {
+                    document.getElementById("more").classList.add("hide-row");
                     // selected a particular menu item
                     // .. loop thru the rows and hide the ones that don't match.
                     for (let i = 0; i < tableRows.length; i++) {
@@ -56,10 +58,11 @@ function buildTable(data) {
                     }
                 }
                 else {
+                    document.getElementById("more").classList.remove("hide-row");
                     circleGen(getCircles());
                     // show all rows
                     // remove the "hide-row" class from all rows.
-                    for (let i = 0; i < tableRows.length; i++) {
+                    for (let i = 0; i < 49; i++) {
                         let rowTR = tableRows[i];
                         if (rowTR.classList.contains("hide-row")) {
                             rowTR.classList.remove("hide-row");
@@ -236,6 +239,29 @@ function buildTable(data) {
           $(document).ready(function() {
             $("#button").click(function(){
                 randomize();
+            });
+            });
+
+        //limits rows of table to 50
+            
+        function limitRows() {
+            var table = document.getElementById('grid');
+            var rows = Array.from(table.querySelectorAll('.row'));
+            rows.shift(); //ignores header row
+
+            for (var i = rows.length - 1; i > 49; i--) {
+                rows[i].classList.add('hide-row');
+            } }
+
+        //show more button function
+
+        $(document).ready(function() {
+            $("#more").click(function(){
+                var hiddenRows = document.querySelectorAll('.hide-row');
+                for (var i = 0; i < 49; i++) {
+                    hiddenRows[i].classList.remove('hide-row');
+                }
+                
             });
             });
 
