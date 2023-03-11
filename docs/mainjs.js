@@ -5,17 +5,15 @@ function buildTable(data) {
         // combine the two dataTags items into one .. then add to the row ...
         let dataTags = (data[i].dataTag1 + " " + data[i].dataTag2).trim();
         let rowNumber = i.toString();
-        var row = `<div id = "row-${rowNumber}" class="row" data-tags='${(dataTags)}'>
+        var row = `<div class="row" data-tags='${(dataTags)}'>
         <div class="cell s"><a href="${data[i].link}" target="_blank">${data[i].site}</a></div>
         <div class="cell d">${data[i].description}</div>
         <div class="cell t">${data[i].tags}</div>
         </div>`
                 // add the row & cells code ...
-                table.innerHTML += row
+                table.innerHTML += row;
     }
 }
-        // clear the previous console entries each time we open this page.
-        //console.clear();
 
         window.onload = function () {
             // DOM elements are ready ...
@@ -24,16 +22,18 @@ function buildTable(data) {
             buildTable(myArray); 
             randomize();
             limitRows();
+            circleGen();
 
             // which table tbody has the rows to filter? 
             let tableData = document.getElementById("grid");
-            // grab the collection of TRs ...
-            let tableRows = tableData.querySelectorAll("[id*='row']");
+            // grab the collection of TRs including the withheld rows
+            let tableRows = tableData.querySelectorAll("[data-tags]");
+
 
             // selection box changes ..
             var selectMenu = document.querySelector(".menu");
             selectMenu.onchange = function () {
-                
+
                 let selection = this.value;
 
                 if (selection !== "-") {
@@ -56,10 +56,10 @@ function buildTable(data) {
                             rowTR.classList.add("hide-row");
                         }
                     }
+                    circleGen();
                 }
                 else {
                     document.getElementById("more").classList.remove("hide-row");
-                    circleGen(getCircles());
                     // show all rows
                     // remove the "hide-row" class from all rows.
                     for (let i = 0; i < 49; i++) {
@@ -68,6 +68,7 @@ function buildTable(data) {
                             rowTR.classList.remove("hide-row");
                         }
                     }
+                    circleGen();
                 }
             }
         }
@@ -78,24 +79,29 @@ function buildTable(data) {
             uniqueDataTags.push("-");
             for (var i = 0; i < myArray.length; i++) {
                 if ((!(uniqueDataTags.includes(myArray[i].dataTag1)))&&(!(myArray[i].dataTag1 == ""))) {
-                uniqueDataTags.push(myArray[i].dataTag1);
+                    uniqueDataTags.push(myArray[i].dataTag1);
                 } 
             }
-          for (var i = 0; i < myArray.length; i++) {
+            for (var i = 0; i < myArray.length; i++) {
                 if ((!(uniqueDataTags.includes(myArray[i].dataTag2)))&&(!(myArray[i].dataTag2 == ""))) {
-                uniqueDataTags.push(myArray[i].dataTag2);
+                    uniqueDataTags.push(myArray[i].dataTag2);
                 } 
             }
-
-            //capitalizing the first letter of all unique tag values
-
+            
+            // capitalizing the first letter of all unique tag values
+            // and capitalizing unique tag values that have two characters
+            
             var uniqueDataTagTitles = [];
             for (i = 0; i < uniqueDataTags.length;  i++) {
-                uniqueDataTagTitles.push(uniqueDataTags[i].replace(/\b\w/g, c => c.toUpperCase()));
+                if (uniqueDataTags[i].length == 2) {
+                    uniqueDataTagTitles.push(uniqueDataTags[i].toUpperCase());
+                } else {
+                    uniqueDataTagTitles.push(uniqueDataTags[i].replace(/\b\w/g, c => c.toUpperCase()));
+                }
             } 
-
+            
             //taking first term from the string of all unique tag values
-
+            
             var uniqueDataTagValues = [];
             for (i = 0; i < uniqueDataTags.length;  i++) {
                 var z = uniqueDataTags[i].indexOf(" ");
@@ -116,41 +122,21 @@ function buildTable(data) {
                     select.appendChild(el);
                 }
 
-            //excluding circle generation from the top of the table
-
-                elementDef = document.getElementById('bHeader');
-                elementDef2 = document.getElementById('theBottom');
-                var topExc = elementDef.getBoundingClientRect();
-                var botExc = elementDef2.getBoundingClientRect();
-
-                topEdge = topExc.top;
-                bottomEdge = topExc.top + topExc.height;
-                zebottom = botExc.top;
-                
-                //this code \/ \/ \/ very important and I fail to understand why 
-
-                var selectMenu = document.querySelector(".menu");
-                selectMenu.onchange = function () {
-                    console.log("changed"); }
-
-
-            //creating circles in the background 
-
-            function getCircles() {
-            
-                docHeight = $(document).height()
-                number = Math.round(docHeight/69);
-                return number;
-
-            }
-
             circles = [];
 
-            function circleGen(num) {
+            function circleGen() {
+
+            if (circles.length > 0) {
+                for (i = 0; i < circles.length; i++) {
+                    circles[i].remove();
+                }
+            }
+
+            docHeight = $(document).height();
+            docWidth = $(document).width();
+            num = docHeight/92;
 
             for (i = 0; i < (num * 2); i++) {
-                
-                maxHeight = $(document).height() - 250;
 
                 circles.push(document.createElement('div'));
                 circles[i].setAttribute('id',i);
@@ -168,21 +154,11 @@ function buildTable(data) {
                 document.getElementById(i).style.height = randomSize;
                 document.getElementById(i).style.width = randomSize;
 
-                randomP1 = Math.floor(Math.random() * (maxHeight - 1 + 1) + 1).toString();
-                if (((randomP1 >= topEdge) && (randomP1 <= bottomEdge))) {
-                    while (((randomP1 >= topEdge) && (randomP1 <= bottomEdge)) || (randomP1 >= zebottom)) {
-                        randomP1 = Math.floor(Math.random() * (maxHeight - 1 + 1) + 1).toString();
-                    }
-                }
-                if (randomP1 >= document.getElementById('theBottom').getBoundingClientRect().top) {
-                    while (randomP1 >= document.getElementById('theBottom').getBoundingClientRect().top) {
-                        randomP1 = Math.floor(Math.random() * (maxHeight - 1 + 1) + 1).toString();
-                    }
-                } 
-                randomP1 = randomP1 + 'px';
+                randomP1 = Math.floor(Math.random() * (docHeight - 0 + 1) + 0).toString();
+                randomP1 = randomP1 + "px";
+                randomP2 = Math.floor(Math.random() * (docWidth - 0 + 1) + 0).toString();   
+                randomP2 = randomP2 + "px";
 
-                randomP2 = Math.floor(Math.random() * (100 - 1 + 1) + 1).toString();
-                randomP2 = randomP2 + '%';
                 document.getElementById(i).style.position = "absolute";
                 document.getElementById(i).style.top = randomP1;
                 document.getElementById(i).style.right = randomP2; 
@@ -193,22 +169,6 @@ function buildTable(data) {
 
                }
             }
-
-       $(window).on('load', function(){ 
-            
-               circleGen(getCircles());
-
-           }); 
-
-        $('select').on('change', function() {
-
-        for (i = 0; i < circles.length; i++) {
-            circles[i].remove();
-            }
-
-        circleGen(getCircles());
-
-         });
 
             // function for shuffling the array that builds table
 
@@ -261,7 +221,7 @@ function buildTable(data) {
                 for (var i = 0; i < 49; i++) {
                     hiddenRows[i].classList.remove('hide-row');
                 }
-                
+                circleGen();
             });
             });
 

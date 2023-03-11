@@ -187,9 +187,9 @@
         border-radius: 3px;
         cursor:pointer;
         }
-
+        
         #button:active {
-        box-shadow: -6px 6px 5px -2px var(--color3);
+        box-shadow: 0px 0px 6px 6px var(--color3);
         border: 0.5px solid var(--color3);
         } 
 
@@ -302,6 +302,11 @@
           margin: 3vh;
         }
 
+        #more:active {
+          box-shadow: 0px 0px 6px 6px var(--color3);
+          border: 0.5px solid var(--color3);
+          } 
+
         /* #discordIcon {
     	height:80px;
         }
@@ -344,6 +349,7 @@
     	#theBottom {
     	display:table;
     	margin:0 auto;
+      margin-top: 10vh;
         color: var(--color2);
         font-family: var(--font1), var(--font5);
     	}
