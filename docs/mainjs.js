@@ -127,29 +127,6 @@ function buildTable(data) {
                     select.appendChild(el);
                 }
 
-            //making circles move around randomly
-
-            function makeNewPosition(){
-    
-                // Get viewport dimensions (remove the dimension of the div)
-                h = $(document).height() * 0.9;
-                var w = $(document).width() * 0.9;
-                
-                var nh = Math.floor(Math.random() * h);
-                var nw = Math.floor(Math.random() * w);
-                
-                return [nh,nw];    
-                
-            }
-            
-            function animateDiv(myclass){
-                var newq = makeNewPosition();
-                $(myclass).animate({ top: newq[0], left: newq[1] }, 3000,   function(){
-                  animateDiv(myclass);        
-                });
-                
-            };
-
             circles = [];
 
             function circleGen() {
@@ -191,8 +168,6 @@ function buildTable(data) {
                 randomOp = Math.floor(Math.random() * (100 - 1 + 1) + 1).toString();
                 randomOp = randomOp + "%";
                 document.getElementById(i).style.opacity = randomOp;
-
-                animateDiv("#" + i);
 
                }
             }
