@@ -15,6 +15,8 @@ function buildTable(data) {
     }
 }
 
+        goodToGo = true;
+
         window.onload = function () {
             // DOM elements are ready ...
 
@@ -33,7 +35,7 @@ function buildTable(data) {
             // selection box changes ..
             var selectMenu = document.querySelector(".menu");
             selectMenu.onchange = function () {
-
+                goodToGo = false;
                 let selection = this.value;
 
                 if (selection !== "-") {
@@ -50,6 +52,9 @@ function buildTable(data) {
                             if (rowTR.classList.contains("hide-row")) {
                                 rowTR.classList.remove("hide-row");
                             }
+                            if (rowTR.classList.contains("fade-in")) {
+                                rowTR.classList.remove("fade-in");
+                            }
                         }
                         else {
                             // doesn't have the matching data-tag
@@ -62,12 +67,11 @@ function buildTable(data) {
                     document.getElementById("more").classList.remove("hide-row");
                     // show all rows
                     // remove the "hide-row" class from all rows.
-                    for (let i = 0; i < 49; i++) {
+                    for (let i = 0; i < tableRows.length; i++) {
                         let rowTR = tableRows[i];
-                        if (rowTR.classList.contains("hide-row")) {
-                            rowTR.classList.remove("hide-row");
-                        }
+                        rowTR.className = "row";
                     }
+                    limitRows();
                     circleGen();
                 }
             }
@@ -117,10 +121,34 @@ function buildTable(data) {
                     var opt = uniqueDataTagTitles[i];
                     var val = uniqueDataTagValues[i];
                     var el = document.createElement("option");
+                    el.setAttribute('class', 'menu-item')
                     el.textContent = opt;
                     el.value = val;
                     select.appendChild(el);
                 }
+
+            //making circles move around randomly
+
+            function makeNewPosition(){
+    
+                // Get viewport dimensions (remove the dimension of the div)
+                h = $(document).height() * 0.9;
+                var w = $(document).width() * 0.9;
+                
+                var nh = Math.floor(Math.random() * h);
+                var nw = Math.floor(Math.random() * w);
+                
+                return [nh,nw];    
+                
+            }
+            
+            function animateDiv(myclass){
+                var newq = makeNewPosition();
+                $(myclass).animate({ top: newq[0], left: newq[1] }, 3000,   function(){
+                  animateDiv(myclass);        
+                });
+                
+            };
 
             circles = [];
 
@@ -140,10 +168,8 @@ function buildTable(data) {
 
                 circles.push(document.createElement('div'));
                 circles[i].setAttribute('id',i);
+                circles[i].setAttribute('class','circle');
                 document.body.appendChild(circles[i]);
-
-                document.getElementById(i).style.borderRadius = '50%';
-                document.getElementById(i).style.zIndex = -1;
 
                 randomColor = Math.floor(Math.random()*16777215).toString(16);
                 randomColor = "#" + randomColor;
@@ -159,13 +185,14 @@ function buildTable(data) {
                 randomP2 = Math.floor(Math.random() * (docWidth - 0 + 1) + 0).toString();   
                 randomP2 = randomP2 + "px";
 
-                document.getElementById(i).style.position = "absolute";
                 document.getElementById(i).style.top = randomP1;
                 document.getElementById(i).style.right = randomP2; 
 
                 randomOp = Math.floor(Math.random() * (100 - 1 + 1) + 1).toString();
                 randomOp = randomOp + "%";
                 document.getElementById(i).style.opacity = randomOp;
+
+                animateDiv("#" + i);
 
                }
             }
@@ -182,6 +209,12 @@ function buildTable(data) {
                 var table = document.getElementById('grid');
                 var rows = Array.from(table.querySelectorAll('.row'));
                 var header = rows.shift(); // remove the first row (header) and store it in a variable
+
+                for (i = 0; i < rows.length; i++) {
+                    if (rows[i].classList.contains("fade-in")) {
+                        rows[i].classList.remove("fade-in")
+                    }
+                }
             
                 for (var i = rows.length - 1; i > 0; i--) {
                   var j = Math.floor(Math.random() * (i + 1));
@@ -218,10 +251,21 @@ function buildTable(data) {
         $(document).ready(function() {
             $("#more").click(function(){
                 var hiddenRows = document.querySelectorAll('.hide-row');
-                for (var i = 0; i < 49; i++) {
+                goodToGo = true;
+                
+                var i = 0;
+                function fadeInRow() {
+                  if (i < 49 && goodToGo) {
+                    hiddenRows[i].classList.add('fade-in');
                     hiddenRows[i].classList.remove('hide-row');
+                    i++;
+                    setTimeout(fadeInRow, 100);
+                    if (i == 49) {
+                        circleGen();
+                    }
+                  }
                 }
-                circleGen();
+                fadeInRow();
             });
             });
 

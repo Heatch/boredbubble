@@ -71,6 +71,12 @@
 
           } 
 
+        .circle {
+        position: absolute;
+        z-index: -1;
+        border-radius: 50%;
+        }
+
         #LePage {
         display: flex;
         flex-direction: column;
@@ -180,6 +186,24 @@
         font-family: var(--font3), var(--font5);
         }
 
+        /* style the scroll bar */
+        select::-webkit-scrollbar {
+          width: 8px; /* set the width of the scroll bar */
+        }
+
+        select::-webkit-scrollbar-track {
+          background-color: var(--color1); /* set the background color of the track */
+        }
+
+        select::-webkit-scrollbar-thumb {
+          background-color: var(--color2); /* set the color of the thumb */
+          border-radius: 10px; /* round the edges of the thumb */
+        }
+
+        select::-webkit-scrollbar-thumb:hover {
+          background-color: var(--color3);
+        }
+
         option, select {
         background-color: var(--color1b); 
         border: 0.5px solid var(--color2); 
@@ -283,6 +307,19 @@
 
       .hide-row {
         display: none;
+        }
+      
+      .fade-in {
+        animation: fadeIn 0.8s;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
         }
 
     /* THE BOTTOM */
