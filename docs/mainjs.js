@@ -1,18 +1,29 @@
-function buildTable(data) {
-    var table = document.getElementById('grid')
+async function getArray() {
+    const requestURL = 'tabledata.json';
+    const request = new Request(requestURL);
 
-    for (var i = 0; i < data.length; i++) { 
-        // combine the two dataTags items into one .. then add to the row ...
-        let dataTags = (data[i].dataTag1 + " " + data[i].dataTag2).trim();
-        let rowNumber = i.toString();
-        var row = `<div class="row" data-tags='${(dataTags)}'>
-        <div class="cell s"><a href="${data[i].link}" target="_blank">${data[i].site}</a></div>
-        <div class="cell d">${data[i].description}</div>
-        <div class="cell t">${data[i].tags}</div>
-        </div>`
-                // add the row & cells code ...
-                table.innerHTML += row;
-    }
+    const response = await fetch(request);
+    const data = await response.json();
+    return data;
+}
+
+async function buildTable(data) {
+    const table = document.querySelector('#grid');
+    const rows = data.map((item) => {
+      const dataTags = (item.dataTag1 + ' ' + item.dataTag2).trim();
+      return `
+        <div class="row" data-tags="${dataTags}">
+          <div class="cell s"><a href="${item.link}" target="_blank">${item.site}</a></div>
+          <div class="cell d">${item.description}</div>
+          <div class="cell t">${item.tags}</div>
+        </div>
+      `;
+    });
+    table.innerHTML += rows.join('');
+
+    randomize();
+    limitRows();
+    circleGen();
 }
 
         goodToGo = true;
@@ -21,23 +32,20 @@ function buildTable(data) {
             // DOM elements are ready ...
 
             // populate the table, using the data from an array.
-            buildTable(myArray); 
-            randomize();
-            limitRows();
-            circleGen();
+            getArray().then(data => buildTable(data));
+
+            // selection box changes ..
+            var selectMenu = document.querySelector(".menu");
+            selectMenu.onchange = function () {
 
             // which table tbody has the rows to filter? 
             let tableData = document.getElementById("grid");
             // grab the collection of TRs including the withheld rows
             let tableRows = tableData.querySelectorAll("[data-tags]");
 
-
-            // selection box changes ..
-            var selectMenu = document.querySelector(".menu");
-            selectMenu.onchange = function () {
                 goodToGo = false;
                 let selection = this.value;
-
+                
                 if (selection !== "-") {
                     document.getElementById("more").classList.add("hide-row");
                     // selected a particular menu item
@@ -79,53 +87,59 @@ function buildTable(data) {
 
             //array that stores all unique data tags
 
-            var uniqueDataTags = [];
-            uniqueDataTags.push("-");
-            for (var i = 0; i < myArray.length; i++) {
-                if ((!(uniqueDataTags.includes(myArray[i].dataTag1)))&&(!(myArray[i].dataTag1 == ""))) {
-                    uniqueDataTags.push(myArray[i].dataTag1);
-                } 
-            }
-            for (var i = 0; i < myArray.length; i++) {
-                if ((!(uniqueDataTags.includes(myArray[i].dataTag2)))&&(!(myArray[i].dataTag2 == ""))) {
-                    uniqueDataTags.push(myArray[i].dataTag2);
-                } 
-            }
-            
-            // capitalizing the first letter of all unique tag values
-            // and capitalizing unique tag values that have two characters
-            
-            var uniqueDataTagTitles = [];
-            for (i = 0; i < uniqueDataTags.length;  i++) {
-                if (uniqueDataTags[i].length == 2) {
-                    uniqueDataTagTitles.push(uniqueDataTags[i].toUpperCase());
-                } else {
-                    uniqueDataTagTitles.push(uniqueDataTags[i].replace(/\b\w/g, c => c.toUpperCase()));
+            getArray().then(data => createDataTags(data))
+
+            function createDataTags(myArray) {
+                var uniqueDataTags = [];
+                uniqueDataTags.push("-");
+                for (var j = 0; j < myArray.length; j++) {
+                  if (!uniqueDataTags.includes(myArray[j].dataTag1.trim()) && myArray[j].dataTag1.trim() !== "") {
+                    uniqueDataTags.push(myArray[j].dataTag1.trim());
+                  }
                 }
-            } 
-            
-            //taking first term from the string of all unique tag values
-            
-            var uniqueDataTagValues = [];
-            for (i = 0; i < uniqueDataTags.length;  i++) {
-                var z = uniqueDataTags[i].indexOf(" ");
-                var firstTerm = z == -1 ? uniqueDataTags[i] : uniqueDataTags[i].substring(0, z);
-                uniqueDataTagValues.push(firstTerm);
-            }
-
-            //creating dropdown list with arrays
-
+                for (var k = 0; k < myArray.length; k++) {
+                  if (!uniqueDataTags.includes(myArray[k].dataTag2.trim()) && myArray[k].dataTag2.trim() !== "") {
+                    uniqueDataTags.push(myArray[k].dataTag2.trim());
+                  }
+                }
+              
+                // capitalize the first letter of each word, except for two-letter data tags which are fully capitalized
+                var uniqueDataTagTitles = [];
+                for (var i = 0; i < uniqueDataTags.length; i++) {
+                  var tag = uniqueDataTags[i];
+                  if (tag.length === 2) {
+                    uniqueDataTagTitles.push(tag.toUpperCase());
+                  } else {
+                    var words = tag.toLowerCase().split(" ");
+                    for (var j = 0; j < words.length; j++) {
+                      words[j] = words[j].charAt(0).toUpperCase() + words[j].slice(1);
+                    }
+                    uniqueDataTagTitles.push(words.join(" "));
+                  }
+                }
+              
+                // taking first term from the string of all unique tag values
+                var uniqueDataTagValues = [];
+                for (var i = 0; i < uniqueDataTags.length; i++) {
+                  var z = uniqueDataTags[i].indexOf(" ");
+                  var firstTerm = z === -1 ? uniqueDataTags[i] : uniqueDataTags[i].substring(0, z);
+                  uniqueDataTagValues.push(firstTerm);
+                }
+              
                 var select = document.getElementById("filter");
-
-                for(var i = 0; i < uniqueDataTagTitles.length; i++) {
-                    var opt = uniqueDataTagTitles[i];
-                    var val = uniqueDataTagValues[i];
-                    var el = document.createElement("option");
-                    el.setAttribute('class', 'menu-item')
-                    el.textContent = opt;
-                    el.value = val;
-                    select.appendChild(el);
+              
+                for (var i = 0; i < uniqueDataTagTitles.length; i++) {
+                  var opt = uniqueDataTagTitles[i];
+                  var val = uniqueDataTagValues[i];
+                  var el = document.createElement("option");
+                  el.setAttribute("class", "menu-item");
+                  el.textContent = opt;
+                  el.value = val;
+                  select.appendChild(el);
                 }
+              }              
+
+            // Circles
 
             circles = [];
 
@@ -172,7 +186,7 @@ function buildTable(data) {
                }
             }
 
-            // function for shuffling the array that builds table
+        // function for shuffling the array that builds table
 
         function shuffle(array) {
             return array.sort(() => Math.random() - 0.5);
@@ -246,8 +260,7 @@ function buildTable(data) {
 
         //makes it so "jump to bottom and top" work without changing link
 
-        jQuery(document).ready(function($) {
-
+        $(document).ready(function() {
             $(".jump").click(function(event){
                 event.preventDefault();
                 $('html,body').animate({scrollTop:$(this.hash).offset().top}, 1200);
