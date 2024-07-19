@@ -62,4 +62,4 @@ Made with plain HTML/CSS/JS (first website I built🙃).
 * User accounts... a little far-fetched but would allow for favouriting and saving as well as easier user suggestions and reports
 * BoredBubble articles: Website SEO is horrible right now and having a bunch of separate pages with writeups would help tremendously  
 
-Realistically, much of the above will never be done my me, I have move on to other projects. Any open-source contributors wanting to work on BoredBubble can feel free to reach out 🤡
+Realistically, much of the above will never be done my me, I have moved on to other projects. Any open-source contributors wanting to work on BoredBubble can feel free to reach out 🤡
