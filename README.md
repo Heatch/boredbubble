@@ -52,7 +52,7 @@ Made with plain HTML/CSS/JS (first website I built🙃).
 
 * There's a pretty slick transition when you click the "SHOW MORE" button
 * The "bubbles" in the bakground have randomly generated positioning, colour, size and opacity that resets on reload or after various user actions
-* The dynamic nature of the "table" is due to the fact that every row is simply a div that uses the CSS grid display propety to look like a regular HTML table
+* The dynamic nature of the "table" is due to the fact that every row is simply a div that uses the CSS grid display property to look like a regular HTML table
 
 
 ## Potential Future Changes❓❓❓
