@@ -20,7 +20,7 @@ async function buildTable(data) {
       `;
     });
     table.innerHTML += rows.join('');
-
+    
     randomize();
     limitRows();
     circleGen();
